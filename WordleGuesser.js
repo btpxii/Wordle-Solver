@@ -32,9 +32,11 @@ function getExactWords() {
         }
         // console.log("The number of matching letters found in the word " + allPossibleWords[i] + " is " + found.length);
         if (found.length === wordPos.length) {
+            // console.log("The word " + allPossibleWords[i] + " matches the criteria");
             possibleWords.push(allPossibleWords[i]);
         }
     }
+    console.log("list from exact position \n" + possibleWords);
     return [possibleWords, wordPos];
 }
 
@@ -52,8 +54,12 @@ function getPositionWords() {
             wordPos.push(i);
         }
     }
-    // console.log("The positions for these letters are " + wordPos);
+     // console.log("The positions for these letters are " + wordPos);
     let evenMorePossibleWords = [];
+    if (wordPos.length == 0) {
+        console.log("no included letters given, returning previous list");
+        return possibleWords;
+    }
     for (let i = 0; i < possibleWords.length; i++) {
         var contains = [];
         // console.log("The current word being checked is " + possibleWords[i]);
@@ -70,6 +76,9 @@ function getPositionWords() {
                         break;
                     }
                 }
+                if (exactPos.length == 0) {
+                    contains.push("t");
+                }
             }
         }
         // console.log("The number of correct letters found is " + contains.length + " and the number we\'re looking for is " + wordPos.length);
@@ -82,6 +91,7 @@ function getPositionWords() {
 
 function cannotContain() {
     let possibleWords = getPositionWords();
+    console.log("list from included \n" + possibleWords);
     let notInclInput = notIncl.value.toLowerCase();
     
     let gottaBeOneOfThese = [];
@@ -101,6 +111,7 @@ function cannotContain() {
     return gottaBeOneOfThese;
 }
 button.addEventListener("click", () => {
+    console.log("this works")
     document.getElementById("output").innerHTML += "<br>" + cannotContain();
 });
 
