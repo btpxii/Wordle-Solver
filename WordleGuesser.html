@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wordle Guesser</title>
+</head>
+<body>
+    <p>Exact Letters (Green)</p>
+    <div id="exact">
+        <input type="text" id="uno" maxlength="1"><input type="text" id="dos" maxlength="1"><input type="text" id="tres" maxlength="1"><input type="text" id="quatro" maxlength="1"><input type="text" id="cinco" maxlength="1"><br><br>   
+    </div>
+    <p>Included Letters (Yellow)</p>
+    <div id="included">
+        <input type="text" id="uno" maxlength="1"><input type="text" id="dos" maxlength="1"><input type="text" id="tres" maxlength="1"><input type="text" id="quatro" maxlength="1"><input type="text" id="cinco" maxlength="1"><br><br>
+    </div>
+    <p>Letters not contained in the word (Grey)</p>
+    <input type="text" placeholder="pls no spaces" id="notincluded"><br><br>
+    <button type="button" id="submit">Get all possible words</button><br><br>
+    <p id="output">Possible answers (logic isn't perfect, check before submit)</p>
+</body>
+<script src="WordleGuesser.js"></script>
+</html>
