@@ -36,7 +36,7 @@ function getExactWords() {
             possibleWords.push(allPossibleWords[i]);
         }
     }
-    console.log("list from exact position \n" + possibleWords);
+    // console.log("list from exact position \n" + possibleWords);
     return [possibleWords, wordPos];
 }
 
@@ -57,7 +57,7 @@ function getPositionWords() {
      // console.log("The positions for these letters are " + wordPos);
     let evenMorePossibleWords = [];
     if (wordPos.length == 0) {
-        console.log("no included letters given, returning previous list");
+        // console.log("no included letters given, returning previous list");
         return possibleWords;
     }
     for (let i = 0; i < possibleWords.length; i++) {
@@ -66,19 +66,29 @@ function getPositionWords() {
         for (let j = 0; j < wordPos.length; j++) {
             // console.log("Checking if " + given[wordPos[j]] + " is found in " + possibleWords[i]);
             if (possibleWords[i].includes(given[wordPos[j]])) {
-                for (let k = 0; k < exactPos.length; k++) {
-                    if (possibleWords[i].indexOf(given[wordPos[j]]) === exactPos[k]) {
-                        // console.log("The word can\'t be " + possibleWords[i]);
-                    }
-                    else {
+                console.log("The position of the letter " + given[wordPos[j]] + " is " + wordPos[j] + " in the given list and " + possibleWords[i].indexOf(given[wordPos[j]]) + " in the word being checked (" + possibleWords[i] + ")");
+                if (wordPos[j] != possibleWords[i].indexOf(given[wordPos[j]])) {
+                    // console.log("The position of the included letter doesnt match the position in the word being checked. Proceeding...");
+                    if (exactPos.length == 0) {
                         // console.log("Found " + given[wordPos[j]] + "  in " + possibleWords[i]);
                         contains.push("t");
-                        break;
+                    }
+                    else {
+                        for (let k = 0; k < exactPos.length; k++) {
+                            if (possibleWords[i].indexOf(given[wordPos[j]]) === exactPos[k]) {
+                                // console.log("The word can\'t be " + possibleWords[i]);
+                            }
+                            else {
+                                // console.log("Found " + given[wordPos[j]] + "  in " + possibleWords[i]);
+                                contains.push("t");
+                                break;
+                            }
+                        }
                     }
                 }
-                if (exactPos.length == 0) {
-                    contains.push("t");
-                }
+                // if (exactPos.length == 0) {
+                //     contains.push("t");
+                // }
             }
         }
         // console.log("The number of correct letters found is " + contains.length + " and the number we\'re looking for is " + wordPos.length);
@@ -111,7 +121,7 @@ function cannotContain() {
     return gottaBeOneOfThese;
 }
 button.addEventListener("click", () => {
-    console.log("this works")
+    // console.log("this works")
     document.getElementById("output").innerHTML += "<br>" + cannotContain();
 });
 
